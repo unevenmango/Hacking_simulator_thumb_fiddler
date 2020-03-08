@@ -23,4 +23,4 @@ prompt = ""
 while prompt != '-q':
     prompt = prompt(user+'>')
 print('program end')
-
+print('end  even further from my phone')
