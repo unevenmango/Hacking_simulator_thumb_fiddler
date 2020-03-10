@@ -1,7 +1,8 @@
 import os
 import sys
 import random
-
+def func_grab(name):
+    from dbata import Dice_roll
 class bcolors:
         HEADER = '\033[95m'
         OKBLUE = '\033[94m'
@@ -12,11 +13,17 @@ class bcolors:
         BOLD = '\033[1m'
         UNDERLINE = '\033[4m'
 
-
+def help(arg='null'):
+    string = ""
+    if args != 'null':
+        for df in Deffinitions['Deffinitions']:
+            if arg == df:
+                string = string + df + ' '
+        return string
 Deffinitions= {'num':0,'Deffinitions':{}}
 def Add_def(dictionary,name,disc):
-    dictionary.num = dictionary.num + 1
-    dictionary.Deffinitions[name] = disc
+    dictionary['num'] = dictionary['num'] + 1
+    dictionary['Deffinitions'][name] = disc
     return dictionary
 
 def NameGen():
@@ -66,14 +73,23 @@ def Generator(ip_count):
         dyn_num = dyn_num + 1
         Ip_dict[ip_gen()] = ip_setup()
     return Ip_dict
-Add_def()
+Deffinitions = Add_def(Deffinitions,'Generator','geterates world...')
+Deffinitions = Add_def(Deffinitions, 'ip_gen','ip_gen() ran ')
 def prompt(prefix):
-    usr = input(prefix + " ")
+    while prompt != '-q':
+        usr = input(prefix + " ")
+        try:
+            eval(usr) 
+        except Exception as ex:
+            print(ex)
     return usr
+
+func_grab('Dice_roll')
+
 if __name__ == '__main__':
     if (len(sys.argv) > 1):
         if sys.argv[1] == "start":
-            user = prompt("username")
+            user = input('username')
             print("your username is " + user)
             cwd = os.getcwd()
             if not os.path.isdir(cwd+'/'+user):
@@ -85,10 +101,12 @@ if __name__ == '__main__':
                 conf.close
             else:
                 print(user + 'already exsists')
-            prompt = ""
-            while prompt != '-q':
-                prompt = prompt(user+'>')
+            prompt('$')
+
+        elif sys.argv[1] == 'help':
+            print(Deffinitions)
         else:
-            print(eval(sys.argv[1])) 
+            print(eval(sys.argv[1]))
+
 print('program end')
 
