@@ -13,6 +13,11 @@ class bcolors:
         UNDERLINE = '\033[4m'
 
 
+Deffinitions= {'num':0,'Deffinitions':{}}
+def Add_def(dictionary,name,disc):
+    dictionary.num = dictionary.num + 1
+    dictionary.Deffinitions[name] = disc
+    return dictionary
 
 def NameGen():
     sname = ['DitcherQuick&HydeDivorceLawyers.co', 'Gloooble.com', 'HeevinDistress.com']
@@ -26,7 +31,7 @@ def NameGen():
         servername = random.choice(sname)    
     return servername
 
-def ip_gen(option='null'):        
+def ip_gen(option='null'):
     if option == 'local':
         ip1 = random.randint(10, 99) 
         ip2 = random.randint(10, 99) 
@@ -61,28 +66,29 @@ def Generator(ip_count):
         dyn_num = dyn_num + 1
         Ip_dict[ip_gen()] = ip_setup()
     return Ip_dict
-
+Add_def()
 def prompt(prefix):
     usr = input(prefix + " ")
     return usr
-if (len(sys.argv) > 1):
-    if sys.argv[1] == "start":
-        user = prompt("username")
-        print("your username is " + user)
-        cwd = os.getcwd()
-        if not os.path.isdir(cwd+'/'+user):
-            os.mkdir(user)
-            os.chdir(user+'/')
-            print(user + ' dosent exsist. creating dir...')
-            conf = open(user+'.conf', 'w')
-            conf.write(user)
-            conf.close
+if __name__ == '__main__':
+    if (len(sys.argv) > 1):
+        if sys.argv[1] == "start":
+            user = prompt("username")
+            print("your username is " + user)
+            cwd = os.getcwd()
+            if not os.path.isdir(cwd+'/'+user):
+                os.mkdir(user)
+                os.chdir(user+'/')
+                print(user + ' dosent exsist. creating dir...')
+                conf = open(user+'.conf', 'w')
+                conf.write(user)
+                conf.close
+            else:
+                print(user + 'already exsists')
+            prompt = ""
+            while prompt != '-q':
+                prompt = prompt(user+'>')
         else:
-            print(user + 'already exsists')
-        prompt = ""
-        while prompt != '-q':
-            prompt = prompt(user+'>')
-    else:
-        print(eval(sys.argv[1])) 
+            print(eval(sys.argv[1])) 
 print('program end')
 
