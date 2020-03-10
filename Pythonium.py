@@ -11,7 +11,6 @@ class bcolors:
         ENDC = '\033[0m'
         BOLD = '\033[1m'
         UNDERLINE = '\033[4m'
-print(bcolors.FAIL + "hello" + bcolors.ENDC)
 
 
 
@@ -26,6 +25,7 @@ def NameGen():
     else:        
         servername = random.choice(sname)    
     return servername
+
 def ip_gen(option='null'):        
     if option == 'local':
         ip1 = random.randint(10, 99) 
@@ -44,6 +44,7 @@ def ip_gen(option='null'):
         ip3 = random.randint(100, 999)
         ip_gen = str(ip1) + '.' + str(ip2) + '.' + str(ip3)
     return ip_gen
+
 def mac_gen():
     return "indev"
 
@@ -62,8 +63,6 @@ def Generator(ip_count):
     return Ip_dict
 
 def prompt(prefix):
-    command_line = "$"
-    print(command_line)
     usr = input(prefix + " ")
     return usr
 if (len(sys.argv) > 1):
