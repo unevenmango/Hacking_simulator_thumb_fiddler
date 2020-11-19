@@ -18,7 +18,7 @@ def main():
 
 
 def Read(path):
-    f = open("path")
+    f = open(path)
 
 
 
