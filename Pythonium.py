@@ -1,6 +1,7 @@
 import os
 import sys
 import random
+
 def func_grab(name):
     from dbata import Dice_roll
 class bcolors:
